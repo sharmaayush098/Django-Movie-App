@@ -14,7 +14,7 @@
 <h1>Top Actors Top Movies</h1>
 <img src="{% static 'MOVIES--LOGO.jpg' %}" width="1280" height="240">
 <ul>
-    {% for a in all_movies %}
+    {% for a in object_list %}
         <li>
             <h3><a href="{% url 'movie1:detail' a.id %}"> {{ a.actor }} </a></h3>
         </li>

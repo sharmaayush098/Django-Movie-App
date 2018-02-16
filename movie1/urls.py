@@ -6,10 +6,9 @@ app_name = 'movie1'
 
 urlpatterns = [
     # /music/
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.IndexView.as_view(), name='index'),
     # /music/a.id
-    url(r'^(?P<movie_id>[0-9]+)/$', views.detail, name='detail'),
+    url(r'^(?P<pk>[0-9]+)/$', views.Index1View.as_view(), name='detail'),
 
-    # /music/a.id/favorite
-    url(r'^(?P<movie_id>[0-9]+)/favorite/$', views.favorite, name='favorite')
+
 ]

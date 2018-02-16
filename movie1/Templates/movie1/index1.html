@@ -1,33 +1,30 @@
 {% extends 'movie1/Header.html' %}
 {% block a %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>index1</title>
-    {% load static %}
-</head>
-<body bgcolor="#a9a9a9">
-<img src="{{ m1.movie_logo }}" width="260" height="220">
-<h1>{{ m1.actor }}</h1>
-<h3>{{ m1.actor_movie }}(movie)</h3>
-{% if error_message %}
-    <strong>{{ error_message }}</strong>
-{% endif %}
-<form action="{% url 'movie1:favorite' m1.id %}" method="post">
-    {% csrf_token %}
-    {% for song  in m1.song_set.all %}
-        <input type="radio" id="song{{ forloop.counter }}" name="song" value="{{ song.id }}"/>
-        <label for = "song{{ forloop.counter }}">
-            {{ song.song_name }}
-            {% if song.is_favorite %}
-            <img src="{% static 'star_in_front_img.jpeg' %}" width="10" height="10"/>
-            {% endif %}
-        </label><br>
-    {% endfor %}
-<input type="submit" value="favorite">
-</form>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>index1</title>
+        {% load static %}
+    </head>
+    <body bgcolor="#a9a9a9">
+    <img src="{{ movie.movie_logo }}" width="260" height="220">
+    <h1>{{ movie.actor }}</h1>
+    <h3>{{ movie.actor_movie }}(movie)</h3>
 
-</body>
-</html>
+
+<ul>
+    {% for song  in movie.song_set.all %}
+        <li>
+        {{ song.song_name }}
+        {% if song.is_favorite %}
+            <img src="{% static 'star_in_front_img.jpeg' %}" width="10" height="10"/>
+        {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+
+    </body>
+    </html>
 {% endblock %}
