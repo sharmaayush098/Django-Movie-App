@@ -1,0 +1,26 @@
+{% extends 'movie1/Header.html'%}
+{% block a %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Dhamaka</title>
+    {% load static %}
+</head>
+<body>
+
+
+<h1>Top Actors Top Movies</h1>
+<img src="{% static 'MOVIES--LOGO.jpg' %}" width="1280" height="240">
+<ul>
+    {% for a in all_movies %}
+        <li>
+            <h3><a href="{% url 'movie1:detail' a.id %}"> {{ a.actor }} </a></h3>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+</body>
+</html>
