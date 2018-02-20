@@ -1,11 +1,15 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 
 class Movie(models.Model):
     actor = models.CharField(max_length=30)
     actor_movie = models.CharField(max_length=50)
     genre = models.CharField(max_length=50)
-    movie_logo = models.CharField(max_length=100)
+    movie_logo = models.FileField()
+
+    def get_absolute_url(self):
+        return reverse('movie1:detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.actor + "---" + self.actor_movie
